@@ -23,22 +23,37 @@ class Collect
 
     private function applyValidator(string $field, string $validator, array $messages): void
     {
-        $validatorClass = 'Collect\\Validators\\' . ucfirst(explode(':', $validator)[0] . 'Validator');
+        // Разбиваем строку валидатора на имя и аргументы
+        $validatorParts = explode(':', $validator);
+        $validatorName = $validatorParts[0];
+        $validatorArgs = $validatorParts[1] ?? null;
 
-        if (class_exists($validatorClass)) {
-            $args = explode(':', $validator)[1] ?? null;
-            $args = $args ? explode(',', $args) : [];
+        // Формируем полное имя класса валидатора
+        $validatorClassName = 'Collect\\Validators\\' . ucfirst($validatorName) . 'Validator';
 
-            $validatorInstance = new $validatorClass(
-                $field,
-                $this->array[$field] ?? null,
-                $args,
-                $messages[$validator] ?? null
-            );
+        // Проверяем существование класса валидатора
+        if (!class_exists($validatorClassName)) {
+            return;
+        }
 
-            if ($validatorInstance->validate() !== true) {
-                $this->errors[$field][] = $validatorInstance->validate();
-            }
+        // Подготавливаем аргументы
+        $args = $validatorArgs ? explode(',', $validatorArgs) : [];
+
+        // Получаем кастомное сообщение об ошибке
+        $errorMessage = $messages[$validator] ?? null;
+
+        // Создаем экземпляр валидатора
+        $validator = new $validatorClassName(
+            $field,               // имя поля
+            $this->array[$field] ?? null, // значение поля
+            $args,                // дополнительные аргументы
+            $errorMessage         // кастомное сообщение
+        );
+
+        // Выполняем валидацию и сохраняем ошибку, если есть
+        $validationResult = $validator->validate();
+        if ($validationResult !== true) {
+            $this->errors[$field][] = $validationResult;
         }
     }
 
