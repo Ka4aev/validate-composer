@@ -1,0 +1,25 @@
+{
+    "name": "ka4aev/validate",
+    "description": "Collection and validation library",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ka4aev",
+            "email": "staskachaev205@mail.ru"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.0 | ^8.0",
+        "illuminate/database": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Collect\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}
