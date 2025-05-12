@@ -1,5 +1,5 @@
 <?php
-namespace Collect\Validators;
+namespace Validate\Validators;
 
 class PasswordValidator extends AbstractValidator
 {

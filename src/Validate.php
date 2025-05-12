@@ -1,7 +1,7 @@
 <?php
-namespace Collect;
+namespace Validate;
 
-class Collect
+class Validate
 {
     private array $array = [];
     private array $errors = [];
@@ -29,7 +29,7 @@ class Collect
         $validatorArgs = $validatorParts[1] ?? null;
 
         // Формируем полное имя класса валидатора
-        $validatorClassName = 'Collect\\Validators\\' . ucfirst($validatorName) . 'Validator';
+        $validatorClassName = 'Validate\\Validators\\' . ucfirst($validatorName) . 'Validator';
 
         // Проверяем существование класса валидатора
         if (!class_exists($validatorClassName)) {

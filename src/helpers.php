@@ -1,12 +1,12 @@
 <?php
-namespace Collect;
+namespace Validate;
 
-function collection(array $array = []): Collect
+function collection(array $array = []): Validate
 {
-    return new Collect($array);
+    return new Validate($array);
 }
 
-function validate(array $data, array $rules, array $messages = []): Collect
+function validate(array $data, array $rules, array $messages = []): Validate
 {
-    return (new Collect($data))->validate($rules, $messages);
+    return (new Validate($data))->validate($rules, $messages);
 }

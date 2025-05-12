@@ -1,5 +1,5 @@
 <?php
-namespace Collect\Validators;
+namespace Validate\Validators;
 use Illuminate\Database\Capsule\Manager as Capsule;
 
 class UniqueValidator extends AbstractValidator

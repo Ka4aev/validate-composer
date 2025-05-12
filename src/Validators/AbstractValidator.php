@@ -1,5 +1,5 @@
 <?php
-namespace Collect\Validators;
+namespace Validate\Validators;
 
 abstract class AbstractValidator
 {

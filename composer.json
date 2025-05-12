@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Collect\\": "src/"
+            "Validate\\": "src/"
         },
         "files": [
             "src/helpers.php"
